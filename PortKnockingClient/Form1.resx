@@ -120,4 +120,18 @@
   <metadata name="menuStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
+  <data name="textBoxHelp.Text" xml:space="preserve">
+    <value>Config files are in CSV file type, fields are separated by ;
+Column description bellow.
+1. - Hostname or IP address to knocking
+2. - Port no
+3. - packet count to send
+4. - delay in ms after send every package
+Examples:
+# send 5 packets UDP to example.com:1080, delay between packets are 100ms
+# send 3 packets UDP to example.com:1000, delay 80ms
+example.com;1080;5;100
+example.com;1000;3;80
+</value>
+  </data>
 </root>

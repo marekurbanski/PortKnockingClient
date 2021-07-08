@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // zestaw atrybutów. Zmień wartości tych atrybutów, aby zmodyfikować informacje
 // powiązane z zestawem.
 [assembly: AssemblyTitle("PortKnockingClient")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Tool for sending UDP packets for port knocking")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("Marek Urbanski")]
 [assembly: AssemblyProduct("PortKnockingClient")]
 [assembly: AssemblyCopyright("Copyright ©  2021")]
 [assembly: AssemblyTrademark("")]
