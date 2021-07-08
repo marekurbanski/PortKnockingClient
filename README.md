@@ -10,7 +10,7 @@ To open FTP (21) connection you have to
 After this Mikrotik open connection to knocikng IP address for 5 minutes to new connection
 
 ### PortKnocingClient configuration:
-192.168.0.1;5555;4;300
+192.168.0.1;5555;4;300</br>
 192.168.0.1;5554;3;300
 192.168.0.1;4553;5;300
 192.168.0.1;1552;4;300
