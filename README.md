@@ -2,7 +2,7 @@
 
 ## Simple configuration to secure ftp connection to Mikrotik (192.168.0.1):
 
-To open FTP (21) connection you have to
+### To temporarily open the FTP port (21) to one IP address you currently have:
 - knock 4 times on port 5555
 - knock 3 times on port 5554
 - knock 5 times on port 4553
