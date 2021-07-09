@@ -69,7 +69,7 @@ namespace PortKnockingClient
             tabControl.SelectTab(2);
             Log("Initialize...");
             Log("Starting");
-            for (int i = 0; i< commandsText.Lines.Length-1; i++)
+            for (int i = 0; i< commandsText.Lines.Length; i++)
             {
                 z++;
                 if (z > 100)
