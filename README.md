@@ -1,14 +1,16 @@
 # Tool for sending UDP packets for port knocking.
-
+You can download compiled version here:</br>
+https://sourceforge.net/projects/portknocker-client/files/</br>
+</br>
 ## Simple configuration to secure ftp connection to Mikrotik (192.168.0.1):
 
 ### To temporarily open the FTP port (21) to one IP address you currently have:
-- knock 4 times on port 5555
-- knock 3 times on port 5554
-- knock 5 times on port 4553
-- knock 4 times on port 1552
-After this Mikrotik open connection to knocikng IP address for 5 minutes to new connection
-
+- knock 4 times on port 5555</br>
+- knock 3 times on port 5554</br>
+- knock 5 times on port 4553</br>
+- knock 4 times on port 1552</br>
+After this Mikrotik open connection to knocikng IP address for 5 minutes to new connection</br>
+</br>
 ### PortKnocingClient configuration:
 192.168.0.1;5555;4;300</br>
 192.168.0.1;5554;3;300</br>
