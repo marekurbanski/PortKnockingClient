@@ -9,7 +9,20 @@ using System.Windows.Forms;
 using System.IO;
 using System.Threading.Tasks;
 using System.Net.Sockets;
-using System.Configuration;
+// Removed becaust at this moement config files are not used
+//using System.Configuration;
+
+
+/*
+ * Application to send UDP packets for port knocking
+ * Free for use
+ * If you have any question on comments feel write to me 
+ * marek@www2.pl
+ * 
+ * @TODO - add config file, auto send packets after run
+ * @TODO - finish sending tcp packets
+ */
+
 
 
 namespace PortKnockingClient
@@ -21,18 +34,35 @@ namespace PortKnockingClient
             InitializeComponent();
         }
 
-        // Metoda logująca dane w zakładce z Logami
-        private void Log(String text)
+
+        /*
+         * Method loggin text on Log tab
+         */
+private void Log(String text)
         {
             textBoxLogs.AppendText(text + "\r\n");
         }
 
+
+        /*
+         * Method sending UDP packets
+         * In this case we sending only one packets to ip:port
+         */
         static void SendUdp(int srcPort, string dstIp, int dstPort, byte[] data)
         {
             using (UdpClient c = new UdpClient(srcPort))
                 c.Send(data, data.Length, dstIp, dstPort);
         }
 
+
+        /*
+         * Method for sending TCP data
+         * In this moment not used, I leave it for the future
+         * It could be used to send TCP packets, the smallest packets
+         * package registered on Mikrotik is 5
+         * so it can be used as multiple 5 
+         * ex: nth=5,1 protocol=tcp
+         */
         static void SendTcp(string dstIp, int dstPort, byte[] data)
         {
             byte value1 = 64;
@@ -43,13 +73,17 @@ namespace PortKnockingClient
             stream.Write(header, 0, header.Length);
             stream.Flush();
 
-            //stream.Write(null, 0, 1);
-            //stream.WriteByte(1);
-
-
         }
 
 
+        /*
+         * Method for sending config line by line
+         * Here I'm using variable "type"
+         * Its no used now, it can be implemented to recognizing packet type
+         * such as udp/tcp
+         * Note that tpc will be received as 5 packages on Mikrotik
+         * Read SentTcp method
+         */
         private void sendToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
@@ -105,6 +139,12 @@ namespace PortKnockingClient
         }
 
 
+        /*
+         * This method is executed once
+         * Only where application is started
+         * It read last executed config
+         * saved in .lack.knock
+         */
         private void load_on_run()
         {
             var fileContent = string.Empty;
@@ -118,6 +158,10 @@ namespace PortKnockingClient
             }
         }
 
+
+        /*
+         * This method load saved config
+         */
         private void loadConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             var fileContent = string.Empty;
@@ -125,7 +169,6 @@ namespace PortKnockingClient
 
             using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-               // openFileDialog.InitialDirectory = "c:\\";
                 openFileDialog.Filter = "knock files (*.knock)|*.knock|All files (*.*)|*.*";
                 openFileDialog.FilterIndex = 1;
                 openFileDialog.RestoreDirectory = true;
@@ -146,9 +189,13 @@ namespace PortKnockingClient
             StreamWriter sw2 = new StreamWriter(".last.knock");
             sw2.WriteLine(commandsText.Text);
             sw2.Close();
-            //MessageBox.Show(fileContent, "File Content at path: " + filePath, MessageBoxButtons.OK);
         }
 
+
+        /*
+         * This method saves config to file
+         * Additionally it saves to this config to .last.knock file 
+         */
         private void saveConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Stream myStream;
@@ -177,21 +224,38 @@ namespace PortKnockingClient
             }
         }
 
+
+        /*
+         * Nothing to add here ;)
+         */
         private void ClientKnockerForm_Shown(object sender, EventArgs e)
         {
             load_on_run();
         }
 
+
+        /*
+         * This clear config text
+         */
         private void newConfigToolStripMenuItem_Click(object sender, EventArgs e)
         {
             commandsText.Clear();
         }
 
+
+        /*
+         * About box
+         * Simple, as Messagebox instead new window becasue I'm lazy ;)
+         */
         private void aboutToolStripMenuItem1_Click(object sender, EventArgs e)
         {
             MessageBox.Show("Tool for sending UDP packets for port knocking.\r\n\r\nAny suggestions? Write to me: marek@www2.pl");
         }
 
+
+        /*
+         * Exit ;)
+         */
         private void exitToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Application.Exit();
